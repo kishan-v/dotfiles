@@ -76,6 +76,13 @@ else
   ln -sfn "$repo_path/tmux/.tmux" ~/.tmux
 fi
 
+if [ $? -ne 0 ]; then
+  echo "[ERROR] Failed to stow tmux"
+  exit 1
+else
+  echo "[DEBUG] Successfully stowed tmux"
+fi
+
 # Install TPM plugins
 if [ -d ~/.tmux/plugins/tpm ]; then
   ~/.tmux/plugins/tpm/bin/install_plugins
