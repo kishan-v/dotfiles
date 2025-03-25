@@ -3,11 +3,11 @@ repos:
     rev: v1.5.0
     hooks:
       - id: detect-secrets
-      #args: ['--baseline', '.secrets.baseline']
+        #args: ['--baseline', '.secrets.baseline']
 
   - repo: https://github.com/JohnnyMorganz/StyLua
     rev: v2.0.2
     hooks:
       - id: stylua
-        args: [--config-path, stylua.toml]
+        #args: [--config-path, stylua.toml]
 
