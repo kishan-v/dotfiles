@@ -1,18 +1,13 @@
 repos:
   - repo: https://github.com/Yelp/detect-secrets
-    rev: v1.0.3
+    rev: v1.5.0
     hooks:
       - id: detect-secrets
       #args: ['--baseline', '.secrets.baseline']
 
   - repo: https://github.com/JohnnyMorganz/StyLua
-    rev: v0.16.0
+    rev: v2.0.2
     hooks:
       - id: stylua
         args: [--config-path, stylua.toml]
 
-  - repo: https://github.com/mpeterv/luacheck
-    rev: master
-    hooks:
-      - id: luacheck
-        args: [--globals, vim]
