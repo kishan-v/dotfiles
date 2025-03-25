@@ -3,7 +3,7 @@ repos:
     rev: v1.5.0
     hooks:
       - id: detect-secrets
-        args: ['--baseline', '.secrets.baseline', '--exclude-files', 'lazy-lock\\.json']
+        args: ['--baseline', '.secrets.baseline', '--exclude-files', 'nvim/.config/nvim/lazy-lock.json']
 
   - repo: https://github.com/JohnnyMorganz/StyLua
     rev: v2.0.2
