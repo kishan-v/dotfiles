@@ -1,0 +1,14 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  runs-on: ubuntu-latest
+  steps:
+    - name: pre-commit
+      uses: pre-commit/action@v3.0.1
+
