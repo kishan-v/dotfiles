@@ -15,7 +15,9 @@ return {
 			mason_lspconfig.setup({
 				ensure_installed = { "basedpyright", "gopls" },
 			})
-			require("lspconfig").basedpyright.setup({
+			lspconfig = require("lspconfig")
+
+			lspconfig.basedpyright.setup({
 				capabilities = capabilities,
 				on_attach = function(client, bufnr)
 					-- Optional: enable signature help via lsp_signature
@@ -53,7 +55,7 @@ return {
 			})
 
 			-- Setup for Go using gopls
-			require("lspconfig").gopls.setup({
+			lspconfig.gopls.setup({
 				capabilities = capabilities,
 				on_attach = function(client, bufnr)
 					require("lsp_signature").on_attach({
@@ -81,6 +83,20 @@ return {
 						},
 					},
 				},
+			})
+
+			-- Setup for Swift using sourcekit-lsp
+			lspconfig.sourcekit.setup({
+				cmd = { "sourcekit-lsp" },
+				filetypes = { "swift" },
+				root_dir = function(fname)
+					return lspconfig.util.root_pattern("Package.swift", ".git")(fname) or vim.fn.getcwd()
+				end,
+				on_attach = function(client, bufnr)
+					vim.defer_fn(function()
+						vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+					end, 50) -- HACK: inlay hint initialisation only works after delay
+				end,
 			})
 		end,
 	},
