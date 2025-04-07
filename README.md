@@ -26,3 +26,9 @@
 #### Instructions
 
 Rectangle -> Settings -> Import `rectangle/RectangleConfig.json`
+
+### zsh
+
+#### TODO: copy in powerlevel10k config and relevant lines from .zshrc
+
+
