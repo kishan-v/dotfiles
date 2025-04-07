@@ -8,6 +8,7 @@ return {
 				"nvim-telescope/telescope-fzf-native.nvim",
 				build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release",
 			},
+			"nvim-telescope/telescope-ui-select.nvim",
 		},
 		keys = {
 			{ "<leader>sf", "<cmd>Telescope git_files<cr>", desc = "Find Files (root dir)" },
@@ -32,6 +33,7 @@ return {
 		build = "make",
 		config = function()
 			require("telescope").load_extension("fzf")
+			require("telescope").load_extension("ui-select")
 		end,
 	},
 }

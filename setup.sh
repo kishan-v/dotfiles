@@ -45,13 +45,13 @@ cd "$repo_path" || {
   exit 1
 }
 
-TIMESTAMP=$(date +%Y%m%d_%H%M%S)
-TARGET="$HOME/.config/nvim"
-BACKUP="$TARGET.bak.$TIMESTAMP"
+backup_path ~/.config/nvim  # tilde is not expanded when enclosed in quotes
 
-if [ -d "$TARGET" ] && [ ! -L "$TARGET" ]; then
-  echo "Backing up existing Neovim config to $BACKUP..."
-  mv "$TARGET" "$BACKUP"
+if [ $? -ne 0 ]; then
+  echo "[ERROR] Failed to backup existing nvim config"
+  exit 1
+else
+  echo "[DEBUG] Successfully backed up existing nvim config"
 fi
 
 stow nvim
