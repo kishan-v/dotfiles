@@ -83,14 +83,10 @@ cd "$repo_path" || {
   exit 1
 }
 
-# Symlink tmux config using stow
-if command -v stow >/dev/null 2>&1; then
-  stow tmux
-else
-  echo "Stow not installed, falling back to manual symlinks"
-  ln -sf "$repo_path/tmux/.tmux.conf" ~/.tmux.conf
-  ln -sfn "$repo_path/tmux/.tmux" ~/.tmux
-fi
+backup_path ~/.tmux.conf  # tilde is not expanded when enclosed in quotes
+backup_path ~/.tmux  # tilde is not expanded when enclosed in quotes
+
+stow tmux
 
 if [ $? -ne 0 ]; then
   echo "[ERROR] Failed to stow tmux"
