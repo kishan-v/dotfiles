@@ -21,3 +21,8 @@
 
 - `:Copilot auth`
 
+### Rectangle
+
+#### Instructions
+
+Rectangle -> Settings -> Import `rectangle/RectangleConfig.json`
