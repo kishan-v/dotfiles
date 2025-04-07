@@ -75,6 +75,29 @@ fi
 
 ## zsh / oh-my-zsh setup
 
+cd "$repo_path" || {
+  echo "[ERROR] Failed to cd into repo path"
+  exit 1
+}
+
+backup_path ~/.config/zsh  # tilde is not expanded when enclosed in quotes
+
+if [ $? -ne 0 ]; then
+  echo "[ERROR] Failed to backup existing zsh config"
+  exit 1
+else
+  echo "[DEBUG] Successfully backed up existing zsh config"
+fi
+
+stow zsh
+
+if [ $? -ne 0 ]; then
+  echo "[ERROR] Failed to stow zsh"
+  exit 1
+else
+  echo "[DEBUG] Successfully stowed zsh"
+fi
+
 # -----------------------------------------------------------------------
 
 ## tmux setup
