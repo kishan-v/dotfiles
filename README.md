@@ -8,6 +8,9 @@
     chmod +x ./setup.sh
     ./setup.sh
      ```
+- iterm2
+  - iTerm2 -> Settings -> General -> Settings -> Load settings from a custom folder or url
+    - set to `[repo_path]/iterm2/`
 
 ### NeoVim
 
