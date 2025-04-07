@@ -20,6 +20,22 @@ fi
 
 # For each tool, check if the host already has a configuration in the default location, and if so say to backup and clear this configuration, then cancel setting up this tool, and proceed to the next
 
+# Function to backup a path with timestamp suffix
+backup_path() {
+  local path="$1"
+  local timestamp=$(date +%Y%m%d_%H%M%S)
+  local backup="${path}.bak.${timestamp}"
+
+  if [ -e "$path" ]; then
+    echo "Backing up $path to $backup..."
+    mv "$path" "$backup"
+    return $?
+  else
+    echo "No existing $path found, skipping backup."
+    return 0
+  fi
+}
+
 # -----------------------------------------------------------------------
 
 ## Neovim setup symlinks
@@ -93,4 +109,29 @@ else
 fi
 
 # -----------------------------------------------------------------------
+
+## karabiner setup
+
+cd "$repo_path" || {
+  echo "[ERROR] Failed to cd into repo path"
+  exit 1
+}
+
+backup_path ~/.config/karabiner  # tilde is not expanded when enclosed in quotes
+
+if [ $? -ne 0 ]; then
+  echo "[ERROR] Failed to backup existing karabiner config"
+  exit 1
+else
+  echo "[DEBUG] Successfully backed up existing karabiner config"
+fi
+
+stow karabiner
+
+if [ $? -ne 0 ]; then
+  echo "[ERROR] Failed to stow karabiner"
+  exit 1
+else
+  echo "[DEBUG] Successfully stowed karabiner"
+fi
 
