@@ -73,7 +73,7 @@ fi
 
 # -----------------------------------------------------------------------
 
-## zsh / oh-my-zsh setup
+## zsh / oh-my-zsh + fzf setup
 
 cd "$repo_path" || {
   echo "[ERROR] Failed to cd into repo path"
